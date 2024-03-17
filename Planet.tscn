@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dli8bpglossoh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0ve6m"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g5y0e"]
+seamless = true
+noise = SubResource("FastNoiseLite_0ve6m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a766c"]
+albedo_color = Color(0, 0.403922, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_g5y0e")
+uv1_scale = Vector3(0.045, 0.045, 0.045)
+uv1_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_5wked"]
+radius = 30.0
+height = 60.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pmpj1"]
+radius = 30.0
+
+[node name="Planet" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_a766c")
+mesh = SubResource("SphereMesh_5wked")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_pmpj1")
