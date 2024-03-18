@@ -6,6 +6,8 @@ const ACCELERATION = 1
 const SLOWDOWN_SPEED = 0.5
 const GRAVITY = 7
 
+# ADD NEW CONSTANT CALLED "AIR_DAMP," I'VE FOUND 0.25 WORKS WELL
+
 var mouse_move: Vector2
 var mouse_sensitivity = 0.1
 
@@ -26,7 +28,8 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity -= 5 * gravity_dir
-	
+
+	# CHANGE FINAL PARAMETER TO "SLOWDOWN_SPEED * AIR_DAMP"
 	if not is_on_floor():
 		velocity = velocity.move_toward(velocity - (global_basis * local_xz), SLOWDOWN_SPEED / 2)
 	
