@@ -40,8 +40,11 @@ func _physics_process(delta):
 	input = Vector3.ZERO
 	
 	var stop = 1 if !input else 0
+
+	# FOLLOWING LINE IS NOT NEEDED, CHECK VIDEO DESCRIPTION
 	var pct = local_velocity.normalized().dot(Vector3(0, local_velocity.y, 0).normalized())
-	
+
+	# OMIT (1.0 - pct), CHECK VIDEO DESCRIPTION
 	velocity = velocity.move_toward(velocity - (global_basis * local_xz * stop), (1.0 - pct) * SLOWDOWN_SPEED)
 	
 	_update_camera()
